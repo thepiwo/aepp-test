@@ -44,7 +44,7 @@ module.exports = env => {
     },
     devServer: {
       contentBase: path.join(__dirname, 'dist'),
-      port: 8081,
+      port: 8082,
       historyApiFallback: true,
       disableHostCheck: true,
       host: '0.0.0.0'
@@ -140,6 +140,12 @@ module.exports = env => {
             'vue-style-loader',
             'css-loader', // translates CSS into CommonJS
             'sass-loader' // compiles Sass to CSS, using Node Sass by default
+          ]
+        },
+        {
+          test: /\.aes$/,
+          use: [
+            'raw-loader'
           ]
         },
         {
