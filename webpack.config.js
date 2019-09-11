@@ -78,23 +78,6 @@ module.exports = env => {
         // AND `<script>` blocks in `.vue` files
         {
           test: /\.js$/,
-          include: [
-            path.resolve(__dirname, "src"),
-            path.resolve(__dirname, "node_modules/@aeternity"),
-            path.resolve(__dirname, "node_modules/rlp"),
-            // Contains "const" or "let"
-            path.resolve(__dirname, "node_modules/base-x"),
-            path.resolve(__dirname, "node_modules/vuex-persist"),
-            path.resolve(__dirname, "node_modules/file-type"),
-          ],
-          loader: 'babel-loader'
-        },
-        {
-          type: 'javascript/auto',
-          test: /\.mjs$/,
-          include: [
-            path.resolve(__dirname, "node_modules/@download/blockies")
-          ],
           loader: 'babel-loader'
         },
         // this will apply to both plain `.css` files
@@ -103,15 +86,7 @@ module.exports = env => {
           test: /\.css$/,
           use: [
             'vue-style-loader',
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                config: {
-                  path: 'postcss.config.js'
-                }
-              }
-            }
+            'css-loader'
           ]
         },
         // allows vue compoents in '<template><html><script><style>' syntax

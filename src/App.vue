@@ -10,15 +10,16 @@
   export default {
     name: 'app',
     async mounted () {
-      //const client = await Aepp()
-
+      const client = await Aepp()
+      /*
       const client = await Universal({
          url: 'http://localhost:3001',
          internalUrl: 'http://localhost:3001',
          compilerUrl:  'http://localhost:3080'
        });
-      const contract = await client.getContractInstance(identitySource, {contractAddress: 'ct_23nF2MdjBVEyCFV8Mccu3h9ZqoYNTNnPMZW7at7deS8WqNjyNr'})
-      // await contract.deploy()
+      */
+      const contract = await client.getContractInstance(identitySource)
+      await contract.deploy()
       console.log(contract.deployInfo.address)
 
       console.log('Test')
