@@ -1,37 +1,33 @@
 <template>
-  <div id="app" class="min-h-screen">
-
-    <div class="min-h-screen">
-      <div class="flex justify-center">
-        <div class="mobile-container">
-          <router-view></router-view>
-        </div>
-      </div>
-    </div>
-  </div>
+    <div></div>
 </template>
 
 <script>
-
-  import { AeMain } from '@aeternity/aepp-components'
-  import AeHeader from '@aeternity/aepp-components/src/components/aeHeader/aeHeader'
+  import Universal from '@aeternity/aepp-sdk/es/ae/universal'
+  import Aepp from '@aeternity/aepp-sdk/es/ae/aepp'
+  import identitySource from './util/Identity.aes'
 
   export default {
     name: 'app',
-    components: { AeHeader, AeMain },
+    async mounted () {
+      //const client = await Aepp()
+
+      const client = await Universal({
+         url: 'http://localhost:3001',
+         internalUrl: 'http://localhost:3001',
+         compilerUrl:  'http://localhost:3080'
+       });
+      const contract = await client.getContractInstance(identitySource, {contractAddress: 'ct_23nF2MdjBVEyCFV8Mccu3h9ZqoYNTNnPMZW7at7deS8WqNjyNr'})
+      // await contract.deploy()
+      console.log(contract.deployInfo.address)
+
+      console.log('Test')
+      console.log(await contract.methods.main(0))
+      console.log(await client.getNodeInfo())
+    },
   }
 </script>
 
 <style scoped>
-  .min-h-screen {
-    min-height: 100vh;
-    padding-bottom: 0;
-    background: #F1F4F7;
-    max-height: 100vh;
-    overflow-y: auto;
-  }
 
-  .mobile-container {
-    max-width: 500px
-  }
 </style>

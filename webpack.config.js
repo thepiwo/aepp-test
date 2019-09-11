@@ -66,19 +66,11 @@ module.exports = env => {
           path.join(__dirname, './src/**/*.vue'),
           path.join(__dirname, './src/index.html')
         ]),
-        extractors: [
-          {
-            extractor: TailwindExtractor,
-            // Specify the file extensions to include when scanning for
-            // class names.
-            extensions: ['html', 'js', 'vue']
-          }
-        ]
+        extractors: []
       }),
       new HtmlWebpackHarddiskPlugin(),
       new CleanWebpackPlugin([distFolder]),
       new VueLoaderPlugin(),
-      new BaseHrefWebpackPlugin({ baseHref: env.NODE_ENV === 'prod' ? '/aepp-hybrid-voting/' : '/' })
     ],
     module: {
       rules: [
