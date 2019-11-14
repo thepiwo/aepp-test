@@ -1,2 +1,2 @@
 contract Identity =
-  entrypoint main(x : int) = x
+  stateful entrypoint main(x : int) = x
